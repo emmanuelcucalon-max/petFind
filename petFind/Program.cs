@@ -8,13 +8,14 @@ void menu()
     do
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("   == MENU  ==   \n1. Registrar mascota\n2. Listado de mascotas propias\n3. Reportar mascota desaparecida\n4. Mostrar mascotas desaparecidas\n5. Reportar mascota encontrada\n6. Salir de sesion\n7. Salir del programa");
+        Console.WriteLine("   == MENU  ==   \n1. Registrar mascota\n2. Listado de mascotas propias\n3. Reportar mascota desaparecida\n4. Mostrar mascotas desaparecidas\n5. Billetera de PetPoints\n6. Salir de sesion\n7. Salir del programa");
         Console.Write("\nOpcion escogida: ");
         if (int.TryParse(Console.ReadLine()!, out opcion))
         {
             switch (opcion)
             {
                 case 1:
+                    registrarMascota();
                     break;
                 case 2:
                     break;
@@ -46,7 +47,8 @@ void menu()
 // opcion 1, registrar a las mascotas
 void registrarMascota()
 {
-
+    Console.Clear();
+    
 }
 
 // opcion 2
@@ -80,7 +82,10 @@ void saliendoDelPrograma()
 }
 
 
-
+void pantallaDeCarga()
+{
+    
+}
 // En caso de digitar en las opciones numericas, un numero muy elevado
 void opcionNoDisponible()
 {
