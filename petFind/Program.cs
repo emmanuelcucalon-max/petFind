@@ -1,6 +1,7 @@
 ﻿
 Usuario[] usuarios = new Usuario[100];
 Mascota[] mascotas = new Mascota[100];
+int mascotasRegistradas = 0;
 int opcion = 0;
 
 void menu()
@@ -47,8 +48,21 @@ void menu()
 // opcion 1, registrar a las mascotas
 void registrarMascota()
 {
+    string registroMascotaInput = "";
+
+    mascotasRegistradas++;
     Console.Clear();
-    
+
+    Console.WriteLine("Desea registrar una mascota? Si/No");
+    registroMascotaInput = Console.ReadLine()!;
+    if(registroMascotaInput == "si" || registroMascotaInput == "1")
+    {
+        entrandoPrograma();
+    }
+    else if(registroMascotaInput =="no" || registroMascotaInput =="2")
+    {
+
+    }
 }
 
 // opcion 2
@@ -73,6 +87,21 @@ void saliendoDelPrograma()
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.Write("Saliendo del programa ");
     for (int i = 0; i < 5; i++)
+    {
+        Thread.Sleep(350);
+        Console.Write(". ");
+    }
+    Console.ResetColor();
+    Console.Clear();
+}
+
+// Ingresando a cada programa
+void entrandoPrograma()
+{
+    Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.Write("Ingresando ");
+    for(int i =0; i<5;i++)
     {
         Thread.Sleep(350);
         Console.Write(". ");
