@@ -367,6 +367,19 @@ string ObtenerEntrada(string prompt)
         return "";
     }
 }
+void MostrarAdvertencia(string mensaje)
+{
+    try
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(mensaje);
+        Console.ResetColor();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Advertencia: {mensaje} - {ex.Message}");
+    }
+}
 
 
 
