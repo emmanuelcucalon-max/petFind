@@ -78,7 +78,57 @@ void reportarMascotaDesaparecida()
                 Console.WriteLine("---------------------------------");
             }
         }
-       
+        if (tienemascotas == false)
+        {
+            MostrarAdvertencia("\nNo tienes mascotas registradas.");
+            PausarYContinuar();
+            return;
+        }
+
+        Console.WriteLine("\nIngrese el ID de la mascota para cambiar su estado, 0 para cancelar o '/' para volver");
+        string entrada = Console.ReadLine() ?? "";
+
+        if (entrada == "/") return;
+
+        if (int.TryParse(entrada, out int idMascota) && idMascota != 0)
+        {
+            bool mascotasEncontrada = false;
+
+            for (int i = 0; i < totalMascotas; i++)
+            {
+                if (mascotas[i].id == idMascota && mascotas[i].duenoUsuario == usuarioActivo)
+                {
+                    mascotasEncontrada = true;
+
+                    if (mascotas[i].extraviada == false)
+                    {
+                        mascotas[i].extraviada = true;
+                        mascotasExtraviadas++;
+                        MostrarExito($"\n¡Mascota {mascotas[i].nombre} reportada como DESAPARECIDA exitosamente!");
+                    }
+                    else
+                    {
+                        mascotas[i].extraviada = false;
+                        mascotasExtraviadas--;
+                        MostrarExito($"\n¡Qué alegría! Mascota {mascotas[i].nombre} reportada como EN CASA exitosamente!");
+                    }
+                    break;
+                }
+            }
+
+            if (mascotasEncontrada == false)
+            {
+                MostrarError("\nID de mascota no encontrado o no te pertenece. Intenta de nuevo.");
+            }
+
+            PausarYContinuar();
+        }
+    }
+    catch (Exception ex)
+    {
+        MostrarError($"Error al actualizar el estado de la mascota: {ex.Message}");
+    }
+}
 
 
 // Opcion 4
