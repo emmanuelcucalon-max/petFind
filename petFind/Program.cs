@@ -1,18 +1,18 @@
 ﻿
 Usuario[] usuarios = new Usuario[100];
 Mascota[] mascotas = new Mascota[100];
-int opcion = 0;
+int menu = 0;
 
-void menu()
+void menuPrincipal()
 {
     do
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("   == MENU  ==   \n1. Registrar mascota\n2. Listado de mascotas propias\n3. Reportar mascota desaparecida\n4. Mostrar mascotas desaparecidas\n5. Reportar mascota encontrada\n6. Salir de sesion\n7. Salir del programa");
         Console.Write("\nOpcion escogida: ");
-        if (int.TryParse(Console.ReadLine()!, out opcion))
+        if (int.TryParse(Console.ReadLine()!, out menu))
         {
-            switch (opcion)
+            switch (menu)
             {
                 case 1:
                     break;
@@ -27,18 +27,18 @@ void menu()
                 case 6:
                     break;
                 case 7:
-                    saliendoDelPrograma();
+                    salirPrograma();
                     break;
                 default:
-                    opcionNoDisponible();
+                    MostrarError("Ha ingresado una opcion invalida. Inrese un numero del 1 al 7");
                     break;
             }
         }
         else
         {
-            caracterInvalido();
+            MostrarError("Ha ingresado un caracter invalido.");
         }
-    } while (opcion != 7);
+    } while (menu!= 7);
 
 
 }
@@ -82,18 +82,25 @@ void MostrarCarga(int segundos)
     }
 }
 
-void saliendoDelPrograma()
+void salirPrograma()
 {
-    Console.Clear();
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.Write("Saliendo del programa ");
-    for (int i = 0; i < 5; i++)
+    try
     {
-        Thread.Sleep(350);
-        Console.Write(". ");
+        MostrarEncabezado("CERRANDO SESIÓN", "");
+        Console.WriteLine("Cerrando sesión actual en Petfind.");
+        Console.WriteLine("¡Vuelve pronto!");
+
+        MostrarCarga(3);
+        Console.WriteLine();
+        sesionIniciada = false;
+        usuarioActivo = "";
+        menu = 7;
+        Console.Clear();
     }
-    Console.ResetColor();
-    Console.Clear();
+    catch (Exception ex)
+    {
+        MostrarError($"Error al salir: {ex.Message}");
+    }
 }
 
 void MostrarExito(string mensaje)
@@ -109,42 +116,64 @@ void MostrarExito(string mensaje)
         Console.WriteLine($"Éxito: {mensaje} - {ex.Message}");
     }
 }
+void MostrarEncabezado(string titulo, string instrucciones)
+{
+    Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.WriteLine($"========== {titulo} ==========");
+    Console.ResetColor();
+
+    if (instrucciones != "")
+    {
+        Console.WriteLine(instrucciones + "\n");
+    }
+}
+string ObtenerEntrada(string prompt)
+{
+    try
+    {
+        while (true)
+        {
+            Console.Write(prompt);
+            string entrada = Console.ReadLine() ?? "";
+
+            if (entrada != "")
+            {
+                return entrada;
+            }
+            else
+            {
+                MostrarError("Entrada vacía. Por favor, intenta de nuevo.");
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        MostrarError($"Error al obtener entrada: {ex.Message}");
+        return "";
+    }
+}
 
 
 
 // En caso de digitar en las opciones numericas, un numero muy elevado
-void opcionNoDisponible()
+void MostrarError(string mensaje)
 {
-    Console.Clear();
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.Write("Opcion invalida. Digite una opcion valida ");
-    for (int i = 0; i < 5; i++)
+    try
     {
-        Thread.Sleep(350);
-        Console.Write(". ");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(mensaje);
+        Console.ResetColor();
     }
-    Console.ResetColor();
-    Console.Clear();
-
-}
-// En caso de error por caracter mal digitado
-void caracterInvalido()
-{
-    Console.Clear();
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.Write("El caracter digitado es invalido. Ingrese un caracter valido");
-    for (int i = 0; i < 5; i++)
+    catch (Exception ex)
     {
-        Thread.Sleep(350);
-        Console.Write(". ");
+        Console.WriteLine($"Error: {mensaje} - {ex.Message}");
     }
-    Console.ResetColor();
-    Console.Clear();
 }
 
 void main()
 {
-    menu();
+    menuPrincipal();
 }
 main();
 struct Usuario
