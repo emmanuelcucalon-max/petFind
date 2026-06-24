@@ -1,97 +1,97 @@
-﻿Usuario[] usuarios = new Usuario[100];
-Mascota[] mascotas = new Mascota[100];
-int totalMascotas = 0;
-int totalUsuarios = 0;
-bool sesionIniciada = false;
-string usuarioActivo = "";
-
-void Registrarse()
+﻿
+void MostrarCarga(int segundos)
 {
-    Console.WriteLine("--- Registro de Cuenta ---");
-    Console.Write("Nombre completo: ");
-    string nombre = Console.ReadLine();
-
-    Console.Write("Nombre de usuario: ");
-    string usuario = Console.ReadLine();
-
-    Console.Write("Teléfono: ");
-    string telefono = Console.ReadLine();
-
-    Console.Write("Clave: ");
-    string clave = Console.ReadLine();
-
-    Usuario nuevoUsuario = new Usuario
+    try
     {
-        nombre = nombre,
-        usuario = usuario,
-        telefono = telefono,
-        clave = clave,
-        petPoints = 0
-    };
-
-    usuarios[totalUsuarios] = nuevoUsuario;
-    totalUsuarios++;
-    Console.WriteLine("Registro exitoso.");
-}
-
-void IniciarSesion()
-{
-    Console.WriteLine("--- Iniciar Sesión ---");
-    Console.Write("Usuario: ");
-    string usuario = Console.ReadLine();
-
-    Console.Write("Clave: ");
-    string clave = Console.ReadLine();
-
-    bool usuarioExiste = false;
-
-    for (int i = 0; i < totalUsuarios; i++)
-    {
-        if (usuarios[i].usuario == usuario)
+        for (int i = 0; i < segundos; i++)
         {
-            usuarioExiste = true;
-            if (usuarios[i].clave == clave)
-            {
-                Console.WriteLine("Bienvenido al sistema.");
-                sesionIniciada = true;
-                usuarioActivo = usuario;
-            }
-            else
-            {
-                Console.WriteLine("Clave incorrecta.");
-            }
-            break;
+            System.Threading.Thread.Sleep(350);
+            Console.Write(". ");
         }
     }
-
-    if (usuarioExiste == false)
+    catch (Exception ex)
     {
-        Console.WriteLine("El usuario no existe.");
+        Console.WriteLine($"Error al mostrar carga: {ex.Message}");
     }
 }
 
-struct Usuario
+void MostrarError(string mensaje)
 {
-    public string nombre;
-    public string usuario;
-    public string telefono;
-    public string clave;
-    public int petPoints;
+    try
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(mensaje);
+        Console.ResetColor();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {mensaje} - {ex.Message}");
+    }
 }
 
-struct Mascota
+void MostrarExito(string mensaje)
 {
-    public int id;
-    public string duenoUsuario;
-    public string nombre;
-    public string especie;
-    public string raza;
-    public string color;
-    public string sangre;
-    public string alergias;
-    public string vacunas;
-    public string condicion;
-    public string rasgoCaracteristico;
-    public string citasMedicas;
-    public bool extraviada;
+    try
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(mensaje);
+        Console.ResetColor();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Éxito: {mensaje} - {ex.Message}");
+    }
+}
+
+void MostrarAdvertencia(string mensaje)
+{
+    try
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(mensaje);
+        Console.ResetColor();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Advertencia: {mensaje} - {ex.Message}");
+    }
+}
+
+void registroMascota()
+{
+    Console.Clear();
+    MostrarAdvertencia("--- Registrar Nueva Mascota ---");
+
+    Console.Write("Nombre de la mascota: ");
+    string nombre = Console.ReadLine();
+
+    Console.Write("Especie (Perro/Gato/etc): ");
+    string especie = Console.ReadLine();
+
+    Console.Write("Raza: ");
+    string raza = Console.ReadLine();
+
+    Console.Write("Color de pelaje: ");
+    string color = Console.ReadLine();
+
+    Mascota nuevaMascota = new Mascota
+    {
+        id = totalMascotas + 1,
+        duenoUsuario = usuarioActivo,
+        nombre = nombre,
+        especie = especie,
+        raza = raza,
+        color = color,
+        sangre = "No especificado",
+        alergias = "Ninguna",
+        vacunas = "Ninguna",
+        condicion = "Ninguna",
+        rasgoCaracteristico = "Ninguno",
+        citasMedicas = "Sin citas registradas aún.",
+        extraviada = false
+    };
+
+    mascotas[totalMascotas] = nuevaMascota;
+    totalMascotas++;
+    MostrarExito("Mascota guardada en el sistema.");
 }
