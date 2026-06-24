@@ -227,7 +227,10 @@ void historialMedico()
 
 
 // Opcion 4
+void mascotasDesaparecidas();
+{
 
+}
 
 // Opcion 5
 
