@@ -302,7 +302,86 @@ void billeteraPetPoints()
                 {
                     case 1:
 
+                        Console.WriteLine("--- OPCIONES DE REGISTRO ---");
+                        Console.WriteLine("\n1. Registrar avistamiento de una mascota perdida (150 puntos). \n2. Registrar una mascota encontrada e interceptada (300 puntos). \n3. Volver al menú de billetera.");
+                        Console.Write("Seleccione una opción (1/2): ");
+
+                        if (int.TryParse(Console.ReadLine(), out int tipoRegistro))
+                        {
+                            Console.WriteLine();
+                            switch (tipoRegistro)
+                            {
+                                case 1:
+                                    usuarios[indiceUsuario].petPoints += 150;
+                                    MostrarExito("¡Gracias por tu reporte de avistamiento! Reporte procesado correctamente.");
+                                    Console.WriteLine($"Se ha sumado tu recompensa de 150 PetPoints.");
+                                    break;
+                                case 2:
+                                    usuarios[indiceUsuario].petPoints += 300;
+                                    MostrarExito("¡Gracias por ayudar a la comunidad! Reporte procesado correctamente.");
+                                    Console.WriteLine($"Se ha sumado tu recompensa de 300 PetPoints.");
+                                    break;
+                                default:
+                                    MostrarAdvertencia("Opción de registro no válida. Regresando al menú de billetera.");
+                                    break;
+                            }
+
+                            if (tipoRegistro == 1 || tipoRegistro == 2)
+                            {
+                                Console.WriteLine($"Tu nuevo saldo es de: {usuarios[indiceUsuario].petPoints} puntos.");
+                            }
+                            // Llamada efectiva a la carga tras procesar el registro
+                            MostrarCarga(4);
+                        }
+                        else
+                        {
+                            MostrarError("\nError: Debe introducir un número entero (1 o 2) en el submenú.");
+                            // Llamada efectiva a la carga tras un error
+                            MostrarCarga(4);
+                        }
+                        break;
                     case 2:
+
+                        Console.WriteLine("Servicios disponibles:");
+                        Console.WriteLine("\n1. Consulta Veterinaria General (Costo: 300 PetPoints) \n2. Cancelar operación");
+                        Console.Write("Seleccione el número del servicio que desea canjear (1-2): ");
+
+                        if (int.TryParse(Console.ReadLine(), out int opcionServicio))
+                        {
+                            Console.WriteLine();
+                            switch (opcionServicio)
+                            {
+                                case 1:
+                                    if (usuarios[indiceUsuario].petPoints >= 300)
+                                    {
+                                        usuarios[indiceUsuario].petPoints -= 300;
+                                        MostrarExito("¡Solicitud procesada correctamente! Código de cupón generado.");
+                                        Console.WriteLine($"Saldo restante: {usuarios[indiceUsuario].petPoints} puntos.");
+                                    }
+                                    else
+                                    {
+                                        MostrarError($"Error: Saldo insuficiente en tu billetera PetPoints. Requieres 300 puntos y tienes {usuarios[indiceUsuario].petPoints}.");
+                                    }
+                                    break;
+
+                                case 2:
+                                    MostrarAdvertencia("Operación cancelada por el usuario.");
+                                    break;
+
+                                default:
+                                    MostrarAdvertencia("Opcion no valida. Regresando al menu de billetera");
+                                    break;
+                            }
+                            // Llamada efectiva a la carga tras procesar el canje
+                            MostrarCarga(4);
+                        }
+                        else
+                        {
+                            MostrarError("\nError: Debe introducir un número entero válido (1 o 2).");
+                            // Llamada efectiva a la carga tras un error de entrada
+                            MostrarCarga(4);
+                        }
+                        break;
 
                     case 3:
 
