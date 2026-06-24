@@ -1,0 +1,17 @@
+En visual studio, clonar el repositorio https://github.com/emmanuelcucalon-max/petFind.git, seleccionar main y hacer pull.
+
+Proyecto final de la clase de programacion, se trata de un programa que permite registrar mascotas y su historial medico y permite registtar como perdidas a las mascotas con un sistema que premia a la comunidad por ayudarse entre si a encontrar a sus mascotas perdidas.
+
+Su estructura consiste en un mecanismo para guardar perfiles de dueños los cuales serán comprobados con el usuario y su clave. 
+
+Habiendo procedido del registro, accederá al menu con 7 opciones distintos, siendo el registro de mascotas la primera opción donde se ingresará automáticamente el dueño de su mascota y usted ingresará los datos de su mascota.
+
+La segunda opción, le permitirá acceder a la base médica de su mascota que irá actualizando según la cantidad de vacunas colocadas.
+
+La  tercera opción es el reporte de mascotas desaparecidas, que funcionará con las mascotas registradas en la opción 1, y esta posteriormente se transmitirá a la opción 4, mascotas desaparecidas, donde independientemente la persona que acceda a esta opción, podrá ver todas las mascotas desaparecidas y su dueño.
+
+La opción 5 es para recompensar a aquellas personas que encuentren a las mascotas desaparecidas, llevándolos devuelta a su hogar o dándole información a sus dueños de su procedencia, de esta manera incentivamos el proceso de recuperación de mascotas desaparecidas y sumamos la cantidad de personas que se puedan unir a esta causa.
+
+La opción 6, exporta los datos ingresados de sus masctoas, tales como el estado actual, es decir, desaparecido o en casa, en un archivo que podrá ser usado como base de datos.
+
+La opción 7 es salir del programa.
