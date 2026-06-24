@@ -5,42 +5,71 @@ int menu = 0;
 
 void menuPrincipal()
 {
-    do
+    try
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("   == MENU  ==   \n1. Registrar mascota\n2. Listado de mascotas propias\n3. Reportar mascota desaparecida\n4. Mostrar mascotas desaparecidas\n5. Reportar mascota encontrada\n6. Salir de sesion\n7. Salir del programa");
-        Console.Write("\nOpcion escogida: ");
-        if (int.TryParse(Console.ReadLine()!, out menu))
+        do
         {
+            Console.WriteLine(" --  Menu Principal  -- ");
+            Console.WriteLine("1. Registrar mascota");
+            Console.WriteLine("2. Historial Médico y Citas Veterinarias");
+            Console.WriteLine("3. Reportar mascota desaparecida / encontrada");
+            Console.WriteLine("4. Reportes de desaparecidos (Público)");
+            Console.WriteLine("5. Cartera de PetPoints");
+            Console.WriteLine("6. Exportar Base de Datos a CSV");
+            Console.WriteLine("7. Cerrar Sesión");
+            Console.Write("\nIngrese la opcion a realizar: ");
+
+            string entrada = Console.ReadLine() ?? "";
+
+            if (int.TryParse(entrada, out menu))
+            {
+                // Opción válida
+            }
+            else
+            {
+                MostrarError("Ha ingresado una opcion invalida. Ingrese un numero del 1 al 7");
+                MostrarCarga(4);
+                Console.Clear();
+                continue;
+            }
+
             switch (menu)
             {
                 case 1:
+                    registroMascota();
                     break;
                 case 2:
+                    historialMedico();
                     break;
                 case 3:
+                    reportarMascotaDesaparecida();
                     break;
                 case 4:
+                    mascotasDesaparecidas();
                     break;
                 case 5:
+                    billeteraPetPoints();
                     break;
                 case 6:
+                    exportarDatosCSV();
                     break;
                 case 7:
                     salirPrograma();
                     break;
                 default:
-                    MostrarError("Ha ingresado una opcion invalida. Inrese un numero del 1 al 7");
+                    Console.Clear();
+                    MostrarError("Ha ingresado una opcion invalida. Por favor, ingrese un numero del 1 al 7.");
+                    MostrarCarga(4);
+                    Console.Clear();
                     break;
             }
-        }
-        else
-        {
-            MostrarError("Ha ingresado un caracter invalido.");
-        }
-    } while (menu!= 7);
 
-
+        } while (menu != 7);
+    }
+    catch (Exception ex)
+    {
+        MostrarError($"Error en el menú principal: {ex.Message}");
+    }
 }
 
 // opcion 1, registrar a las mascotas
