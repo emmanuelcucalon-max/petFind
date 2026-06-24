@@ -229,7 +229,39 @@ void historialMedico()
 // Opcion 4
 void mascotasDesaparecidas();
 {
+    try
+    {
+        MostrarEncabezado("REPORTE PÚBLICO DE MASCOTAS", "Cargando mascotas desaparecidas...");
+        MostrarCarga(4);
+        Console.Clear();
 
+        if (mascotasExtraviadas == 0)
+        {
+            MostrarExito("\nNo hay mascotas desaparecidas reportadas. ¡Todos están en casa!");
+        }
+        else
+        {
+            MostrarEncabezado("REPORTE PÚBLICO DE MASCOTAS", "");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Hay {mascotasExtraviadas} mascotas extraviadas: \n");
+            Console.ResetColor();
+
+            for (int i = 0; i < totalMascotas; i++)
+            {
+                if (mascotas[i].extraviada == true)
+                {
+                    MostrarAdvertencia($"#{i + 1}. ID: {mascotas[i].id} - Nombre: {mascotas[i].nombre} - Especie: {mascotas[i].especie} - Raza: {mascotas[i].raza}");
+                    Console.WriteLine($" Rasgo característico: {mascotas[i].rasgoCaracteristico} - Dueño de mascota: {mascotas[i].duenoUsuario}\n");
+                }
+            }
+        }
+        PausarYContinuar();
+    }
+    catch (Exception ex)
+    {
+        MostrarError($"Error al mostrar mascotas desaparecidas: {ex.Message}");
+    }
+}
 }
 
 // Opcion 5
