@@ -237,6 +237,14 @@ void historialMedico()
 
 // Opcion 7 - Sali del programa
 
+void PausarYContinuar()
+{
+    Console.WriteLine("\nPresiona Enter para continuar...");
+    Console.ReadLine();
+    Console.Clear();
+}
+
+
 void MostrarCarga(int segundos)
 {
     try
