@@ -79,7 +79,10 @@ void registrarMascota()
 }
 
 // opcion 2
+void historialMedico()
+{
 
+}
 
 // Opcion 3
 
