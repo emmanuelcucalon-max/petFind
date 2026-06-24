@@ -385,10 +385,16 @@ void billeteraPetPoints()
 
                     case 3:
 
+                        Console.WriteLine($"Tu saldo disponible es: {usuarios[indiceUsuario].petPoints} PetPoints.");
+                        PausarYContinuar();
+                        break;
+
                     case 4:
+
                         MostrarExito("Gracias por usar billetera PetFind. ¡Regresando al menú principal!");
                         MostrarCarga(3);
                         break;
+
                     default:
                         MostrarError("Opción no válida. Por favor, seleccione un número del 1 al 4.");
                         MostrarCarga(3);
