@@ -266,6 +266,25 @@ void mascotasDesaparecidas();
 
 // Opcion 5
 
+void billeteraPetPoints()
+{
+    try
+    {
+        int indiceUsuario = 0;
+        for (int i = 0; i< totalUsuarios; i++)
+        {
+            if (usuarios[i].usuario == usuarioActivo)
+            {
+                indiceUsuario = i;
+                break;
+            }
+        }
+    }
+    catch
+    {
+
+    }
+}
 
 // Opcion 6
 
