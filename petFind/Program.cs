@@ -1,7 +1,6 @@
 ﻿
 Usuario[] usuarios = new Usuario[100];
 Mascota[] mascotas = new Mascota[100];
-int mascotasRegistradas = 0;
 int opcion = 0;
 
 void menu()
@@ -9,14 +8,13 @@ void menu()
     do
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("   == MENU  ==   \n1. Registrar mascota\n2. Listado de mascotas propias\n3. Reportar mascota desaparecida\n4. Mostrar mascotas desaparecidas\n5. Billetera de PetPoints\n6. Salir de sesion\n7. Salir del programa");
+        Console.WriteLine("   == MENU  ==   \n1. Registrar mascota\n2. Listado de mascotas propias\n3. Reportar mascota desaparecida\n4. Mostrar mascotas desaparecidas\n5. Reportar mascota encontrada\n6. Salir de sesion\n7. Salir del programa");
         Console.Write("\nOpcion escogida: ");
         if (int.TryParse(Console.ReadLine()!, out opcion))
         {
             switch (opcion)
             {
                 case 1:
-                    registrarMascota();
                     break;
                 case 2:
                     break;
@@ -48,21 +46,7 @@ void menu()
 // opcion 1, registrar a las mascotas
 void registrarMascota()
 {
-    string registroMascotaInput = "";
 
-    mascotasRegistradas++;
-    Console.Clear();
-
-    Console.WriteLine("Desea registrar una mascota? Si/No");
-    registroMascotaInput = Console.ReadLine()!;
-    if(registroMascotaInput == "si" || registroMascotaInput == "1")
-    {
-        entrandoPrograma();
-    }
-    else if(registroMascotaInput =="no" || registroMascotaInput =="2")
-    {
-
-    }
 }
 
 // opcion 2
@@ -81,6 +65,23 @@ void registrarMascota()
 
 
 // Opcion 7 - Sali del programa
+
+void MostrarCarga(int segundos)
+{
+    try
+    {
+        for (int i = 0; i < segundos; i++)
+        {
+            Thread.Sleep(350);
+            Console.Write(". ");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error al mostrar carga: {ex.Message}");
+    }
+}
+
 void saliendoDelPrograma()
 {
     Console.Clear();
@@ -95,26 +96,22 @@ void saliendoDelPrograma()
     Console.Clear();
 }
 
-// Ingresando a cada programa
-void entrandoPrograma()
+void MostrarExito(string mensaje)
 {
-    Console.Clear();
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.Write("Ingresando ");
-    for(int i =0; i<5;i++)
+    try
     {
-        Thread.Sleep(350);
-        Console.Write(". ");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(mensaje);
+        Console.ResetColor();
     }
-    Console.ResetColor();
-    Console.Clear();
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Éxito: {mensaje} - {ex.Message}");
+    }
 }
 
 
-void pantallaDeCarga()
-{
-    
-}
+
 // En caso de digitar en las opciones numericas, un numero muy elevado
 void opcionNoDisponible()
 {
