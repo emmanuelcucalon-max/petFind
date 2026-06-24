@@ -1,14 +1,4 @@
-____       __  _______           __
-   / __ \___  / /_/ ____(_)___  ____/ /
-  / /_/ / _ \/ __/ /_  / / __ \/ __  / 
- / ____/  __/ /_/ __/ / / / / / /_/ /  
-/_/    \___/\__/_/   /_/_/ /_/\__,_/   
-                                       
-      |\__/,|   (`\
-    _.|o o  |_   ) )   "Tecnología al servicio de las mascotas"
-   -(((---(((--------      
-
-   
+ 
 🐾 PetFind - Prototipo de Gestión y Rescate Animal
 
 > Uniendo a la comunidad para proteger a nuestros compañeros de cuatro patas. 
