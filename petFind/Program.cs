@@ -262,7 +262,6 @@ void mascotasDesaparecidas();
         MostrarError($"Error al mostrar mascotas desaparecidas: {ex.Message}");
     }
 }
-}
 
 // Opcion 5
 
@@ -279,10 +278,54 @@ void billeteraPetPoints()
                 break;
             }
         }
-    }
-    catch
-    {
 
+        int opcion = 0;
+
+        while (opcion != 0)
+        {
+            MostrarEncabezado("BILLETERA PETPOINTS", "Instrucciones: Escribe '/' para regresar al menu principal");
+            Console.WriteLine("1. Registrar (Ganar) puntos");
+            Console.WriteLine("2. Canjear puntos PetFind");
+            Console.WriteLine("3. Ver Puntos Actuales");
+            Console.WriteLine("4. Salir");
+            Console.Write("\nSeleccione una opción (1-4): ");
+
+            string entrada = Console.ReadLine() ?? "";
+
+            if (entrada == "/") return;
+
+            if (int.TryParse(entrada, out opcion))
+            {
+                Console.WriteLine();
+
+                switch (opcion)
+                {
+                    case 1:
+
+                    case 2:
+
+                    case 3:
+
+                    case 4:
+                        MostrarExito("Gracias por usar billetera PetFind. ¡Regresando al menú principal!");
+                        MostrarCarga(3);
+                        break;
+                    default:
+                        MostrarError("Opción no válida. Por favor, seleccione un número del 1 al 4.");
+                        MostrarCarga(3);
+                        break;
+                }
+            }
+            else
+            {
+                MostrarError("\nError: Entrada inválida. Por favor, digite un número del 1 al 4.");
+                MostrarCarga(3);
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        MostrarError($"Error en la billetera de PetPoints: {ex.Message}");
     }
 }
 
